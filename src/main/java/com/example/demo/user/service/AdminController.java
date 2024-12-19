@@ -1,7 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.user.service;
 
-import com.example.demo.dto.ReportRequestDto;
-import com.example.demo.service.AdminService;
+import com.example.demo.user.dto.ReportRequestDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
