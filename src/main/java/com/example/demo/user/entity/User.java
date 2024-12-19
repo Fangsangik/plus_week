@@ -1,6 +1,8 @@
-package com.example.demo.entity;
+package com.example.demo.user.entity;
 
+import com.example.demo.user.type.Role;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 
 @Entity
@@ -18,6 +20,7 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Role role = Role.USER;
 
+    @Builder
     public User(String role, String email, String nickname, String password) {
         this.role = Role.of(role);
         this.email = email;
