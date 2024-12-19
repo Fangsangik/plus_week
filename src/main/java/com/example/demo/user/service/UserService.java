@@ -1,10 +1,11 @@
-package com.example.demo.service;
+package com.example.demo.user.service;
 
-import com.example.demo.dto.Authentication;
-import com.example.demo.dto.LoginRequestDto;
-import com.example.demo.dto.UserRequestDto;
-import com.example.demo.entity.User;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.auth.entity.Authentication;
+import com.example.demo.auth.dto.LoginRequestDto;
+import com.example.demo.user.dto.UserRequestDto;
+import com.example.demo.user.dto.UserResponseDto;
+import com.example.demo.user.entity.User;
+import com.example.demo.user.repository.UserRepository;
 import com.example.demo.util.PasswordEncoder;
 import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
@@ -21,11 +22,14 @@ public class UserService {
     }
 
     @Transactional
-    public void signupWithEmail(UserRequestDto userRequestDto) {
+    public UserResponseDto signupWithEmail(UserRequestDto userRequestDto) {
         String encodedPassword = PasswordEncoder.encode(userRequestDto.getPassword());
         userRequestDto.updatePassword(encodedPassword);
 
         userRepository.save(userRequestDto.toEntity());
+
+        //Test용
+        return new UserResponseDto(userRequestDto.getPassword(), userRequestDto.getEmail());
     }
 
     public Authentication loginUser(LoginRequestDto loginRequestDto) {
