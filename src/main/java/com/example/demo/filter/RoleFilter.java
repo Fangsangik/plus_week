@@ -1,8 +1,8 @@
 package com.example.demo.filter;
 
 import com.example.demo.constants.GlobalConstants;
-import com.example.demo.dto.Authentication;
-import com.example.demo.entity.Role;
+import com.example.demo.auth.entity.Authentication;
+import com.example.demo.user.type.Role;
 import com.example.demo.exception.UnauthorizedException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
