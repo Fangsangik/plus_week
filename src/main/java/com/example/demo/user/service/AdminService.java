@@ -1,7 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.user.service;
 
-import com.example.demo.entity.User;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.user.entity.User;
+import com.example.demo.user.repository.UserRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,12 +19,10 @@ public class AdminService {
     // TODO: 4. find or save 예제 개선
     @Transactional
     public void reportUsers(List<Long> userIds) {
-        for (Long userId : userIds) {
-            User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("해당 ID에 맞는 값이 존재하지 않습니다."));
+        List<User> user = userRepository.findUserIdsAndStatus(userIds, "BLOCKED");
 
-            user.updateStatusToBlocked();
+        user.forEach(User::updateStatusToBlocked);
 
-            userRepository.save(user);
-        }
+        userRepository.saveAll(user);
     }
 }
