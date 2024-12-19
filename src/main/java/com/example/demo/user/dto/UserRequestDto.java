@@ -1,6 +1,7 @@
-package com.example.demo.dto;
+package com.example.demo.user.dto;
 
-import com.example.demo.entity.User;
+import com.example.demo.user.entity.User;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -10,6 +11,8 @@ public class UserRequestDto {
     private String password;
     private String role;
 
+
+    @Builder
     public UserRequestDto(String role, String email, String nickname, String password) {
         this.role = role;
         this.email = email;
