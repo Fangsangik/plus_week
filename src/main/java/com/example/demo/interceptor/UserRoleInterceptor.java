@@ -1,8 +1,8 @@
 package com.example.demo.interceptor;
 
 import com.example.demo.constants.GlobalConstants;
-import com.example.demo.dto.Authentication;
-import com.example.demo.entity.Role;
+import com.example.demo.auth.entity.Authentication;
+import com.example.demo.user.type.Role;
 import com.example.demo.exception.UnauthorizedException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
