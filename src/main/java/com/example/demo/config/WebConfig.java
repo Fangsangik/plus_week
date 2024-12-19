@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
-import com.example.demo.entity.Role;
+import com.example.demo.interceptor.AdminInterceptor;
+import com.example.demo.user.type.Role;
 import com.example.demo.filter.AuthFilter;
 import com.example.demo.filter.RoleFilter;
 import com.example.demo.interceptor.AuthInterceptor;
@@ -21,9 +22,11 @@ public class WebConfig implements WebMvcConfigurer {
     // TODO: 2. 인가에 대한 이해
     private static final String[] AUTH_REQUIRED_PATH_PATTERNS = {"/users/logout", "/admins/*", "/items/*"};
     private static final String[] USER_ROLE_REQUIRED_PATH_PATTERNS = {"/reservations/*"};
+    private static final String ADMIN_ROLE_REQUIRED_PATH_PATTERN = "/admins/*";
 
     private final AuthInterceptor authInterceptor;
     private final UserRoleInterceptor userRoleInterceptor;
+    private final AdminInterceptor adminInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -34,8 +37,13 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(userRoleInterceptor)
                 .addPathPatterns(USER_ROLE_REQUIRED_PATH_PATTERNS)
                 .order(Ordered.HIGHEST_PRECEDENCE + 2);
+
+        registry.addInterceptor(adminInterceptor)
+                .addPathPatterns(ADMIN_ROLE_REQUIRED_PATH_PATTERN)
+                .order(Ordered.HIGHEST_PRECEDENCE + 1);
     }
 
+    //HIGHEST_PRECEDENCE -> 우선순위 지장
     @Bean
     public FilterRegistrationBean authFilter() {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
@@ -51,6 +59,15 @@ public class WebConfig implements WebMvcConfigurer {
         filterRegistrationBean.setFilter(new RoleFilter(Role.USER));
         filterRegistrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE + 2);
         filterRegistrationBean.addUrlPatterns(USER_ROLE_REQUIRED_PATH_PATTERNS);
+        return filterRegistrationBean;
+    }
+
+    @Bean
+    public FilterRegistrationBean adminFilter() {
+        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(new RoleFilter(Role.ADMIN));
+        filterRegistrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
+        filterRegistrationBean.addUrlPatterns(ADMIN_ROLE_REQUIRED_PATH_PATTERN);
         return filterRegistrationBean;
     }
 }
