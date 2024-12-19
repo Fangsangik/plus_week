@@ -1,7 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo.item.controller;
 
-import com.example.demo.dto.ItemRequestDto;
-import com.example.demo.service.ItemService;
+import com.example.demo.item.dto.ItemRequestDto;
+import com.example.demo.item.service.ItemService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
