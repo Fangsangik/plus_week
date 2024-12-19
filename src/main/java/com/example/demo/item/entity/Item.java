@@ -1,11 +1,15 @@
-package com.example.demo.entity;
+package com.example.demo.item.entity;
 
+import com.example.demo.user.entity.User;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.annotations.DynamicInsert;
 
 
 @Entity
 @Getter
+@DynamicInsert // sql에서 null인 필드는 insert하지 않는다.
 // TODO: 6. Dynamic Insert
 public class Item {
     @Id
@@ -32,6 +36,15 @@ public class Item {
         this.description = description;
         this.manager = manager;
         this.owner = owner;
+    }
+
+    @Builder
+    public Item(String name, String description, User owner, User manager, String status) {
+        this.name = name;
+        this.description = description;
+        this.owner = owner;
+        this.manager = manager;
+        this.status = status;
     }
 
     public Item() {}
