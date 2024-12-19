@@ -1,6 +1,6 @@
-package com.example.demo.dto;
+package com.example.demo.auth.entity;
 
-import com.example.demo.entity.Role;
+import com.example.demo.user.type.Role;
 import lombok.Getter;
 
 @Getter
