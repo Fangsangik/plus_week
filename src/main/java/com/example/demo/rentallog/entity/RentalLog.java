@@ -1,5 +1,6 @@
-package com.example.demo.entity;
+package com.example.demo.rentallog.entity;
 
+import com.example.demo.reservation.entity.Reservation;
 import jakarta.persistence.*;
 import lombok.Getter;
 
