@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.demo.rentallog.service;
 
-import com.example.demo.entity.RentalLog;
-import com.example.demo.repository.RentalLogRepository;
+import com.example.demo.rentallog.entity.RentalLog;
+import com.example.demo.rentallog.repository.RentalLogRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,8 +16,8 @@ public class RentalLogService {
     @Transactional
     public void save(RentalLog rentalLog) {
         rentalLogRepository.save(rentalLog);
-        if (rentalLog != null) {
-            throw new RuntimeException();
-        }
+//        if (rentalLog != null) {
+//            throw new RuntimeException();
+//        }
     }
 }
