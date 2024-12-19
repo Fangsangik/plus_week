@@ -1,9 +1,9 @@
-package com.example.demo.service;
+package com.example.demo.item.service;
 
-import com.example.demo.entity.Item;
-import com.example.demo.entity.User;
-import com.example.demo.repository.ItemRepository;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.item.entity.Item;
+import com.example.demo.user.entity.User;
+import com.example.demo.item.repository.ItemRepository;
+import com.example.demo.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
