@@ -1,10 +1,10 @@
-package com.example.demo.controller;
+package com.example.demo.user.controller;
 
 import com.example.demo.constants.GlobalConstants;
-import com.example.demo.dto.Authentication;
-import com.example.demo.dto.LoginRequestDto;
-import com.example.demo.dto.UserRequestDto;
-import com.example.demo.service.UserService;
+import com.example.demo.auth.entity.Authentication;
+import com.example.demo.auth.dto.LoginRequestDto;
+import com.example.demo.user.dto.UserRequestDto;
+import com.example.demo.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.PostMapping;
